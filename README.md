@@ -31,7 +31,7 @@ http://cthorey.github.io./backpropagation/
 http://costapt.github.io/2016/06/26/batch-norm/ 
 http://costapt.github.io/2016/07/09/batch-norm-alt/ 
 
-**One of the referred codes**
+**some of the referred codes**
 
 https://github.com/ncchen55414/Winter-2016-CS231N
 
