@@ -77,6 +77,29 @@ def sgd_momentum(w, dw, config=None):
   return next_w, config
 
 
+def sgd_nesterov(w, dw, config=None):
+  """
+  Using the Nesterov SGD update rule.       
+  
+  config format:
+  - learning_rate: Scalar learning rate.
+  - momentum: Scalar between 0 and 1 giving the momentum value.
+  - velocity: A numpy array of the same shape as w and dw used to store a moving
+  average of the gradients.
+  """
+  if config is None: config = {}
+  config.setdefault('learning_rate', 1e-2)
+  config.setdefault('momentum', 0.9)
+  v = config.get('velocity', np.zeros_like(w))
+
+  momentum, learning_rate = config['momentum'], config['learning_rate']
+  v = momentum*v - learning_rate*dw
+  next_x = x + momentum*v - learning_rate*dw
+  # refer to a keras version: https://github.com/fchollet/keras/blob/master/keras/optimizers.py#L128
+    
+  return next_x, config
+    
+
 
 def rmsprop(x, dx, config=None):
   """
@@ -161,20 +184,6 @@ def adam(x, dx, config=None):
   return next_x, config
 
   
-def sgd_nesterov(x, dx, config=None):
-    """
-        Using the Nesterov SGD update rule.
-        
-    config format:
-    - learning_rate: Scalar learning rate.
-    - momentum: Scalar between 0 and 1 giving the momentum value.
-    - velocity: A numpy array of the same shape as w and dw used to store a moving
-    average of the gradients.
-    """
-    
-    
-    
-    return next_x, config
-    
+
   
 
